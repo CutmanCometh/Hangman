@@ -1,0 +1,60 @@
+html, body, .container{
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.container{
+  width: 100%;
+}
+
+.keyboard{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0 0 20px 0;
+
+  .keyboard-row{
+    margin: 0 auto;
+    padding: 0;
+    height: $key-height-small-screen + 6;
+    padding-left: 2px;
+
+    .keyboard-key{
+      width: $key-width-small-screen;
+      height: $key-height-small-screen;
+      margin-left: 4px;
+      padding: 0;
+      display: inline-block;
+
+      text-transform: uppercase;
+
+      border-radius: 6px;
+
+      background-color: $key-bg-color;
+      color: $key-text-color;
+
+      text-align: center;
+      line-height: $key-height-small-screen + 3;
+    }
+
+    .keyboard-key.disabled{
+      color: $key-disabled-text-color;
+      background-color: $key-disabled-bg-color;
+    }
+    
+    .keyboard-key:first-child{
+      clear: both;
+    }
+  }
+  .keyboard-top-row{
+    width: 320px;
+  }
+  .keyboard-middle-row{
+    width: 288px;
+  }
+  .keyboard-bottom-row{
+    width: 224px;
+  }
+}
