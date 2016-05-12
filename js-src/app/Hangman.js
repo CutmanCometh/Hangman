@@ -8,6 +8,18 @@
  */
 var Hangman = (function () {
 
+    /**
+     * Doubles the numbers
+     * @param number The number to double
+     */
+    var doubleIt = function(number){
+        return number * 2;
+    };
 
-    return {};
+    return {
+
+        doubleIt : doubleIt
+    };
 })();
+
+//TODO Game.js class
