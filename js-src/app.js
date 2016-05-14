@@ -11,3 +11,6 @@
 //@codekit-append "app/Utilities.js"
 
 //@codekit-append "app/Classes/Word.js"
+//@codekit-append "app/Classes/Game.js"
+
+//@codekit-append "app/init.js"

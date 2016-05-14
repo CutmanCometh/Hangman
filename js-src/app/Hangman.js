@@ -8,17 +8,17 @@
  */
 var Hangman = (function () {
 
-    /**
-     * Doubles the numbers
-     * @param number The number to double
-     */
-    var doubleIt = function(number){
-        return number * 2;
+    var keyTapped = function($evt){
+        var letter = $evt.target.innerText.toLowerCase();
+    };
+
+    var getRandomWordString = function(){
+        return "testing";
     };
 
     return {
 
-        doubleIt : doubleIt
+        keyTapped : keyTapped
     };
 })();
 

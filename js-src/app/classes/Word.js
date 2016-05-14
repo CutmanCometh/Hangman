@@ -35,7 +35,7 @@ Word.prototype.getMaskString = function(){
 };
 
 Word.prototype.guessLetter = function(letter){
-    if(!/^[a-z]$/.test(letter)){
+    if(!letter || !/^[a-z]$/.test(letter)){
         throw new Error("Invalid argument to Word.guessLetter()");
     }
 

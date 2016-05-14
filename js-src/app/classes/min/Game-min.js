@@ -1,0 +1,1 @@
+function Game(n){this.word=new Word(n)}

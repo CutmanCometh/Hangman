@@ -36,7 +36,8 @@ html, body, .container{
       color: $key-text-color;
 
       text-align: center;
-      line-height: $key-height-small-screen + 3;
+      line-height: $key-height-small-screen +1;
+      border: none;
     }
 
     .keyboard-key.disabled{
