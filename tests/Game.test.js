@@ -57,4 +57,58 @@ describe('Game.js', function () {
         game.guessLetter('u');
         expect(game.isLost()).toBe(true);
     });
+
+    it('keeps track of incorrect guesses', function(){
+        var game = new Game('');
+        expect(game.getNumberOfGuessesRemaining()).toEqual(6);
+        game.guessLetter('a');
+        expect(game.getNumberOfGuessesRemaining()).toEqual(5);
+        game.guessLetter('b');
+        expect(game.getNumberOfGuessesRemaining()).toEqual(4);
+        game.guessLetter('c');
+        expect(game.getNumberOfGuessesRemaining()).toEqual(3);
+        game.guessLetter('d');
+        expect(game.getNumberOfGuessesRemaining()).toEqual(2);
+        game.guessLetter('e');
+        expect(game.getNumberOfGuessesRemaining()).toEqual(1);
+        game.guessLetter('f');
+        expect(game.getNumberOfGuessesRemaining()).toEqual(0);
+    });
+
+    it('keeps track of guessed letters', function () {
+        var game = new Game('banana');
+        game.guessLetter('s');
+        game.guessLetter('b');
+        game.guessLetter('f');
+        game.guessLetter('n');
+        game.guessLetter('z');
+        game.guessLetter('t');
+        expect(game.getGuessedLetters()).toContain('t');
+        expect(game.getGuessedLetters()).toContain('z');
+        expect(game.getGuessedLetters()).toContain('n');
+        expect(game.getGuessedLetters()).toContain('f');
+        expect(game.getGuessedLetters()).toContain('b');
+        expect(game.getGuessedLetters()).toContain('s');
+
+        expect(game.getGuessedLetters()).not.toContain('a');
+        expect(game.getGuessedLetters()).not.toContain('c');
+        expect(game.getGuessedLetters()).not.toContain('d');
+        expect(game.getGuessedLetters()).not.toContain('e');
+        expect(game.getGuessedLetters()).not.toContain('g');
+        expect(game.getGuessedLetters()).not.toContain('h');
+        expect(game.getGuessedLetters()).not.toContain('i');
+        expect(game.getGuessedLetters()).not.toContain('j');
+        expect(game.getGuessedLetters()).not.toContain('k');
+        expect(game.getGuessedLetters()).not.toContain('l');
+        expect(game.getGuessedLetters()).not.toContain('m');
+        expect(game.getGuessedLetters()).not.toContain('o');
+        expect(game.getGuessedLetters()).not.toContain('p');
+        expect(game.getGuessedLetters()).not.toContain('q');
+        expect(game.getGuessedLetters()).not.toContain('r');
+        expect(game.getGuessedLetters()).not.toContain('u');
+        expect(game.getGuessedLetters()).not.toContain('v');
+        expect(game.getGuessedLetters()).not.toContain('w');
+        expect(game.getGuessedLetters()).not.toContain('y');
+        expect(game.getGuessedLetters()).not.toContain('x');
+    });
 });
