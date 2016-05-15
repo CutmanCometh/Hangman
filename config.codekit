@@ -86,17 +86,6 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/js-src\/app\/min\/init-min.js": {
-		"fileType": 64,
-		"ignore": 1,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/js-src\/app\/min\/init-min.js",
-		"outputAbbreviatedPath": "\/js-src\/app\/min\/min\/init-min-min.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
 	"\/js-src\/app\/Utilities.js": {
 		"fileType": 64,
 		"ignore": 1,

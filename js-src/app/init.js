@@ -7,6 +7,7 @@
     
     //attach listeners
     $('.keyboard-key').click(Hangman.keyTapped);
+    Hangman.startNewGame();
 
     //set up drawing loop
 })($);
