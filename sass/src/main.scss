@@ -10,7 +10,7 @@ html, body, .container{
 
 .word-container{
   position: absolute;
-  bottom: 150px;
+  bottom: 140px;
   width: 100%;
   margin: 0;
   font-size: 2.6em;
@@ -23,14 +23,13 @@ html, body, .container{
     position:relative;
     top:0;
     left: 0;
-    width: .5em;
+    width: 24px;
     margin-right:6px;
 
     .letter-wrapper{
       display:block;
       position:relative;
       /*top:45px;*/
-      overflow:hidden;
       z-index:40;
       color:white;
     }
