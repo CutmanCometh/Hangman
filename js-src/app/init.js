@@ -16,5 +16,10 @@
     //testing animation
     setTimeout(function(){
         $('.letter-wrapper.i').addClass('revealed');
+    },1000);
+
+    setTimeout(function(){
+        $('.letter-wrapper.g').addClass('revealed');
     },2000);
+
 })($);

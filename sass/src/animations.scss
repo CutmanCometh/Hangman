@@ -1,5 +1,5 @@
 @keyframes popup{
-  0%  {top:45px;}
+  0%  {top:45px;z-index:40;color:white;}
   4%  {top:38px;}
   8%  {top:32px;}
   12%  {top:26px;}
@@ -23,6 +23,6 @@
   84%  {top:-9px;}
   88%  {top:-7px;}
   92%  {top:-5px;}
-  96%  {top:-2px;}
-  100%  {top:0px;}
+  96%  {top:-2px;z-index: 40;}
+  100%  {top:0px;z-index: 300;color:black;}
 }
