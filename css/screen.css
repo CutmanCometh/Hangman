@@ -46,6 +46,59 @@ table {
   border-spacing: 0; }
 
 /** KEYS **/
+@keyframes popup {
+  0% {
+    top: 45px; }
+  4% {
+    top: 38px; }
+  8% {
+    top: 32px; }
+  12% {
+    top: 26px; }
+  16% {
+    top: 20px; }
+  20% {
+    top: 15px; }
+  24% {
+    top: 11px; }
+  28% {
+    top: 6px; }
+  32% {
+    top: 2px; }
+  36% {
+    top: -1px; }
+  40% {
+    top: -4px; }
+  44% {
+    top: -7px; }
+  48% {
+    top: -9px; }
+  52% {
+    top: -11px; }
+  56% {
+    top: -12px; }
+  60% {
+    top: -13px; }
+  64% {
+    top: -13px; }
+  68% {
+    top: -13px; }
+  72% {
+    top: -13px; }
+  76% {
+    top: -12px; }
+  80% {
+    top: -11px; }
+  84% {
+    top: -9px; }
+  88% {
+    top: -7px; }
+  92% {
+    top: -5px; }
+  96% {
+    top: -2px; }
+  100% {
+    top: 0px; } }
 html, body, .container {
   height: 100%;
   margin: 0;
@@ -54,12 +107,53 @@ html, body, .container {
 .container {
   width: 100%; }
 
+.word-container {
+  position: absolute;
+  bottom: 150px;
+  width: 100%;
+  margin: 0;
+  font-size: 2.6em;
+  text-align: center;
+  z-index: 1; }
+  .word-container .letter-box {
+    display: inline-block;
+    border-bottom: 2px solid;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: .5em;
+    margin-right: 6px; }
+    .word-container .letter-box .letter-wrapper {
+      display: block;
+      position: relative;
+      /*top:45px;*/
+      overflow: hidden;
+      z-index: 40;
+      color: white; }
+    .word-container .letter-box .letter-wrapper.revealed {
+      display: block;
+      animation-name: popup;
+      animation-duration: 150ms;
+      animation-timing-function: linear;
+      color: black; }
+    .word-container .letter-box .letter-hider {
+      background-color: white;
+      /*rgba(100,100,100,.4);*/
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 1.05em;
+      z-index: 100; }
+  .word-container .letter-box:last-child {
+    margin-right: 0; }
+
 .keyboard {
   position: absolute;
   bottom: 0;
   width: 100%;
   margin: 0;
-  padding: 0 0 20px 0; }
+  padding: 0 0 20px 0;
+  z-index: 200; }
   .keyboard .keyboard-row {
     margin: 0 auto;
     padding: 0;

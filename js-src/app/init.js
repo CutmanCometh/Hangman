@@ -10,4 +10,11 @@
     Hangman.startNewGame();
 
     //set up drawing loop
+
+
+
+    //testing animation
+    setTimeout(function(){
+        $('.letter-wrapper.i').addClass('revealed');
+    },2000);
 })($);

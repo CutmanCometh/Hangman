@@ -8,12 +8,63 @@ html, body, .container{
   width: 100%;
 }
 
+.word-container{
+  position: absolute;
+  bottom: 150px;
+  width: 100%;
+  margin: 0;
+  font-size: 2.6em;
+  text-align: center;
+  z-index:1;
+
+  .letter-box{
+    display: inline-block;
+    border-bottom: 2px solid;
+    position:relative;
+    top:0;
+    left: 0;
+    width: .5em;
+    margin-right:6px;
+
+    .letter-wrapper{
+      display:block;
+      position:relative;
+      /*top:45px;*/
+      overflow:hidden;
+      z-index:40;
+      color:white;
+    }
+
+    .letter-wrapper.revealed{
+      display: block;
+      animation-name: popup;
+      animation-duration:150ms;
+      animation-timing-function:linear;
+      color: black;
+    }
+
+    .letter-hider{
+      background-color: white;/*rgba(100,100,100,.4);*/
+      width:100%;
+      height:100%;
+      position:absolute;
+      top:1.05em;
+      z-index:100;
+    }
+  }
+
+  .letter-box:last-child{
+    margin-right:0;
+  }
+}
+
 .keyboard{
   position: absolute;
   bottom: 0;
   width: 100%;
   margin: 0;
   padding: 0 0 20px 0;
+  z-index:200;
 
   .keyboard-row{
     margin: 0 auto;
