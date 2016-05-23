@@ -67,7 +67,10 @@ var Hangman = (function ($) {
     };
 
     var correctVibrate = function(){
-        navigator.vibrate([40, 60, 40, 60, 60]);
+        //navigator.vibrate([30, 40, 30, 40, 30, 40, 30, 40, 30]);
+        //navigator.vibrate([10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]);
+        //navigator.vibrate([5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5]);
+        navigator.vibrate(75);
     };
 
     var incorrectVibrate = function(){
