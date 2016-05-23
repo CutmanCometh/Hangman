@@ -36,3 +36,7 @@ Game.prototype.getNumberOfGuessesRemaining = function () {
 Game.prototype.getGuessedLetters  = function(){
     return this.guessedLetters.slice();
 };
+
+Game.prototype.getWordAsString = function(){
+    return this.word.getWordAsString();
+};

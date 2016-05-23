@@ -51,3 +51,7 @@ Word.prototype.guessLetter = function(letter){
     return matches;
 };
 
+Word.prototype.getWordAsString = function(){
+    return this.wordString.slice();
+};
+

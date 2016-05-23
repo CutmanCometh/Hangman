@@ -54,6 +54,12 @@ describe('Word class', function () {
         expect(word2.getMaskString()).toEqual('_a__ra__ra')
     })
 
+    it('returns string representation', function(){
+        expect(word1.getWordAsString()).toEqual("potato");
+        expect(word2.getWordAsString()).toEqual("mandragora");
+        expect(word3.getWordAsString()).toEqual("bot");
+    })
+
     it('guessing invalid letter thorws error', function () {
         expect(function(){word1.guessLetter('')}).toThrow(new Error("Invalid argument to Word.guessLetter()"))
         expect(function(){word1.guessLetter(1)}).toThrow(new Error("Invalid argument to Word.guessLetter()"))

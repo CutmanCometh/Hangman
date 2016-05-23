@@ -56,6 +56,8 @@ describe('Game.js', function () {
         expect(game.isLost()).toBe(false);
         game.guessLetter('u');
         expect(game.isLost()).toBe(true);
+        game.guessLetter('t');
+        expect(game.isLost()).toBe(true);
     });
 
     it('keeps track of incorrect guesses', function(){
@@ -110,5 +112,10 @@ describe('Game.js', function () {
         expect(game.getGuessedLetters()).not.toContain('w');
         expect(game.getGuessedLetters()).not.toContain('y');
         expect(game.getGuessedLetters()).not.toContain('x');
+    });
+
+    it('returns string representation of the word', function(){
+        expect(new Game("batch").getWordAsString()).toEqual("batch");
+        expect(new Game("pinochet").getWordAsString()).toEqual("pinochet");
     });
 });

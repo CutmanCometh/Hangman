@@ -11,15 +11,17 @@
 
     //set up drawing loop
 
+    
+    //start new game
 
 
     //testing animation
-    setTimeout(function(){
+    /*setTimeout(function(){
         $('.letter-wrapper.i').addClass('revealed');
     },1000);
 
     setTimeout(function(){
         $('.letter-wrapper.g').addClass('revealed');
-    },2000);
+    },2000);*/
 
 })($);
