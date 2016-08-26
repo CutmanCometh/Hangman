@@ -13,7 +13,7 @@ var Hangman = (function ($) {
     var keyTapped = function($evt){
         var letter = $evt.target.innerHTML.toLowerCase();
         
-        //if the letter has already been guess, don't do anything. also don't do anything if the game is over
+        //if the letter has already been guessed, don't do anything. also don't do anything if the game is over
         if((game.isLost() || game.isWon()) || game.getGuessedLetters().indexOf(letter) >= 0)
             return;
 
@@ -42,7 +42,7 @@ var Hangman = (function ($) {
             playIncorrectSound();
 
             //draw next part of the hangman
-            //TODO draw the hangman
+            redrawHangman();
             alert('Incorrect. You have ' + game.getNumberOfGuessesRemaining() + " guesses remaining");
 
             //check if game is lost
@@ -51,6 +51,10 @@ var Hangman = (function ($) {
                 //TODO reset the game
             }
         }
+
+    };
+
+    var redrawHangman = function(){
 
     };
 
@@ -99,7 +103,7 @@ var Hangman = (function ($) {
             ]).appendTo($wordWrapper);
         });
         
-        //enable all keyboard letters
+        //TODO enable all keyboard letters
     };
     
     var disableLetter = function (letter) {

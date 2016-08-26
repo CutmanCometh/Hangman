@@ -3,11 +3,12 @@
  */
 
 function Game(wordString){
-    this.MAX_INCORRECT_GUESSES = 6;
     this.word = new Word(wordString);
     this.incorrectGuesses = 0;
     this.guessedLetters = [];
 }
+
+Game.MAX_INCORRECT_GUESSES = 6;
 
 Game.prototype.guessLetter = function (letter) {
     if(!letter || !/^[a-z]$/.test(letter))
@@ -26,11 +27,11 @@ Game.prototype.isWon = function(){
 };
 
 Game.prototype.isLost = function(){
-    return this.incorrectGuesses >= this.MAX_INCORRECT_GUESSES;
+    return this.incorrectGuesses >= Game.MAX_INCORRECT_GUESSES;
 };
 
 Game.prototype.getNumberOfGuessesRemaining = function () {
-    return this.MAX_INCORRECT_GUESSES - this.incorrectGuesses;
+    return Game.MAX_INCORRECT_GUESSES - this.incorrectGuesses;
 };
 
 Game.prototype.getGuessedLetters  = function(){
