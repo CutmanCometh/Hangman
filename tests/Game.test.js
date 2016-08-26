@@ -60,7 +60,7 @@ describe('Game.js', function () {
         expect(game.isLost()).toBe(true);
     });
 
-    it('keeps track of incorrect guesses', function(){
+    it('keeps track of guesses remaining', function(){
         var game = new Game('');
         expect(game.getNumberOfGuessesRemaining()).toEqual(6);
         game.guessLetter('a');
@@ -75,6 +75,33 @@ describe('Game.js', function () {
         expect(game.getNumberOfGuessesRemaining()).toEqual(1);
         game.guessLetter('f');
         expect(game.getNumberOfGuessesRemaining()).toEqual(0);
+    });
+
+    it('keeps track of number of bad guesses', function(){
+        var game = new Game('frabjous');
+
+        expect(game.getNumberOfBadGuesses()).toEqual(0);
+
+        game.guessLetter('z');
+        expect(game.getNumberOfBadGuesses()).toEqual(1);
+
+        game.guessLetter('x');
+        expect(game.getNumberOfBadGuesses()).toEqual(2);
+
+        game.guessLetter('f');
+        expect(game.getNumberOfBadGuesses()).toEqual(2);
+
+        game.guessLetter('c');
+        expect(game.getNumberOfBadGuesses()).toEqual(3);
+
+        game.guessLetter('v');
+        expect(game.getNumberOfBadGuesses()).toEqual(4);
+
+        game.guessLetter('n');
+        expect(game.getNumberOfBadGuesses()).toEqual(5);
+
+        game.guessLetter('m');
+        expect(game.getNumberOfBadGuesses()).toEqual(6);
     });
 
     it('keeps track of guessed letters', function () {

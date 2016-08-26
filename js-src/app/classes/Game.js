@@ -34,6 +34,10 @@ Game.prototype.getNumberOfGuessesRemaining = function () {
     return Game.MAX_INCORRECT_GUESSES - this.incorrectGuesses;
 };
 
+Game.prototype.getNumberOfBadGuesses = function(){
+    return this.incorrectGuesses;
+};
+
 Game.prototype.getGuessedLetters  = function(){
     return this.guessedLetters.slice();
 };
