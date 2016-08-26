@@ -10,6 +10,9 @@ var Hangman = (function ($) {
     
     var game = null;
 
+    var canvas = $("#canvas")[0].getContext('2d');
+    console.log(canvas);
+
     var keyTapped = function($evt){
         var letter = $evt.target.innerHTML.toLowerCase();
         
@@ -58,7 +61,45 @@ var Hangman = (function ($) {
     };
 
     var redrawHangman = function(){
+        //draw head
+        var centerX = 150;
+        var centerY = 50;
+        var radius = 40;
 
+        canvas.beginPath();
+        canvas.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+        canvas.lineWidth = 2;
+        canvas.strokeStyle = 'black';
+        canvas.stroke();
+
+        //draw body
+        canvas.moveTo(centerX, centerY + radius);
+        canvas.lineTo(centerX, centerY + radius + 110);
+        canvas.lineWidth = 3;
+        canvas.stroke();
+
+
+        //draw right arm (stage right)
+        canvas.moveTo(centerX, centerY + radius + 10);
+        canvas.lineTo(centerX - 50, centerY + radius + 10 + 40);
+        canvas.stroke();
+
+        //draw left arm (stage left)
+        canvas.moveTo(centerX, centerY + radius + 10);
+        canvas.lineTo(centerX + 50, centerY + radius + 10 + 40);
+        canvas.stroke();
+
+        //draw right leg (stage right)
+        canvas.moveTo(centerX, centerY + radius + 110);
+        canvas.lineTo(centerX - 50, centerY + radius + 110 + 40);
+        canvas.stroke();
+
+        //draw left leg (stage left)
+        canvas.moveTo(centerX, centerY + radius + 110);
+        canvas.lineTo(centerX + 50, centerY + radius + 110 + 40);
+        canvas.stroke();
+
+        //TODO clean up the look of the hangman. base the drawing on the size of the canvas
     };
 
     var playCorrectSound = function(){
@@ -107,6 +148,8 @@ var Hangman = (function ($) {
         });
         
         $('.keyboard-key').removeClass('disabled');
+
+        redrawHangman();
     };
 
     var revealWord = function(){
