@@ -119,5 +119,3 @@ var Hangman = (function ($) {
     
     
 })($);
-
-//TODO Game.js class
