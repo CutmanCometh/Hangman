@@ -6,6 +6,7 @@
 //@codekit-append "lib/jquery/jquery-2.2.3.min.js"
 
 /**APP**/
+//@codekit-append "app/Wordlist.js"
 //@codekit-append "app/Hangman.js"
 //@codekit-append "app/Utilities.js"
 

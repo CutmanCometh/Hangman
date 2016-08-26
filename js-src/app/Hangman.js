@@ -48,6 +48,7 @@ var Hangman = (function ($) {
 
             //check if game is lost
             if(game.isLost()){
+                revealWord();
                 alert('You lose!');
                 //TODO lose animation or something
                 startNewGame()
@@ -84,7 +85,7 @@ var Hangman = (function ($) {
     };
 
     var getRandomWordString = function(){
-        return "testing";
+        return Wordlist.getRandomWord();
     };
     
     var startNewGame = function () {
@@ -106,6 +107,10 @@ var Hangman = (function ($) {
         });
         
         $('.keyboard-key').removeClass('disabled');
+    };
+
+    var revealWord = function(){
+        $('.letter-wrapper').addClass('revealed');
     };
     
     var disableLetter = function (letter) {
