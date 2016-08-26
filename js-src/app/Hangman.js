@@ -33,7 +33,8 @@ var Hangman = (function ($) {
             //check if game is won
             if(game.isWon()){
                 alert('You win!');
-                //TODO reset the game
+                //TODO win animation or something
+                startNewGame();
             }
         }
         else{
@@ -48,7 +49,8 @@ var Hangman = (function ($) {
             //check if game is lost
             if(game.isLost()){
                 alert('You lose!');
-                //TODO reset the game
+                //TODO lose animation or something
+                startNewGame()
             }
         }
 
@@ -103,7 +105,7 @@ var Hangman = (function ($) {
             ]).appendTo($wordWrapper);
         });
         
-        //TODO enable all keyboard letters
+        $('.keyboard-key').removeClass('disabled');
     };
     
     var disableLetter = function (letter) {
