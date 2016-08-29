@@ -9,9 +9,19 @@
 var Hangman = (function ($) {
     
     var game = null;
+    var canvasElement = $("#canvas")[0];
 
-    var canvas = $("#canvas")[0].getContext('2d');
-    console.log(canvas);
+    var canvas = canvasElement.getContext('2d');
+    canvas.strokeStyle = 'black';
+    canvas.fillStyle = "white";
+
+
+
+    var canvasSize = 300;
+
+    var centerX = canvasSize / 2;
+    var centerY = canvasSize / 6;
+    var radius = canvasSize / 7.5;
 
     var keyTapped = function($evt){
         var letter = $evt.target.innerHTML.toLowerCase();
@@ -46,8 +56,8 @@ var Hangman = (function ($) {
             playIncorrectSound();
 
             //draw next part of the hangman
-            redrawHangman();
-            alert('Incorrect. You have ' + game.getNumberOfGuessesRemaining() + " guesses remaining");
+            updateHangman();
+            //alert('Incorrect. You have ' + game.getNumberOfGuessesRemaining() + " guesses remaining");
 
             //check if game is lost
             if(game.isLost()){
@@ -60,46 +70,54 @@ var Hangman = (function ($) {
 
     };
 
-    var redrawHangman = function(){
-        //draw head
-        var centerX = 150;
-        var centerY = 50;
-        var radius = 40;
-
-        canvas.beginPath();
-        canvas.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-        canvas.lineWidth = 2;
-        canvas.strokeStyle = 'black';
-        canvas.stroke();
-
-        //draw body
-        canvas.moveTo(centerX, centerY + radius);
-        canvas.lineTo(centerX, centerY + radius + 110);
-        canvas.lineWidth = 3;
-        canvas.stroke();
-
-
-        //draw right arm (stage right)
-        canvas.moveTo(centerX, centerY + radius + 10);
-        canvas.lineTo(centerX - 50, centerY + radius + 10 + 40);
-        canvas.stroke();
-
-        //draw left arm (stage left)
-        canvas.moveTo(centerX, centerY + radius + 10);
-        canvas.lineTo(centerX + 50, centerY + radius + 10 + 40);
-        canvas.stroke();
-
-        //draw right leg (stage right)
-        canvas.moveTo(centerX, centerY + radius + 110);
-        canvas.lineTo(centerX - 50, centerY + radius + 110 + 40);
-        canvas.stroke();
-
-        //draw left leg (stage left)
-        canvas.moveTo(centerX, centerY + radius + 110);
-        canvas.lineTo(centerX + 50, centerY + radius + 110 + 40);
-        canvas.stroke();
+    var updateHangman = function(){
+        switch (game.getNumberOfBadGuesses()){
+            case 1:
+                //draw head
+                canvas.lineWidth = 2;
+                canvas.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+                canvas.stroke();
+                break;
+            case 2:
+                //draw body
+                canvas.lineWidth = 3;
+                canvas.moveTo(centerX, centerY + radius);
+                canvas.lineTo(centerX, centerY + radius + 110);
+                canvas.stroke();
+                break;
+            case 3:
+                //draw right arm (stage right)
+                canvas.moveTo(centerX, centerY + radius + 10);
+                canvas.lineTo(centerX - 50, centerY + radius + 10 + 40);
+                canvas.stroke();
+                break;
+            case 4:
+                //draw left arm (stage left)
+                canvas.moveTo(centerX, centerY + radius + 10);
+                canvas.lineTo(centerX + 50, centerY + radius + 10 + 40);
+                canvas.stroke();
+                break;
+            case 5:
+                //draw right leg (stage right)
+                canvas.moveTo(centerX, centerY + radius + 110);
+                canvas.lineTo(centerX - 50, centerY + radius + 110 + 40);
+                canvas.stroke();
+                break;
+            case 6:
+                //draw left leg (stage left)
+                canvas.moveTo(centerX, centerY + radius + 110);
+                canvas.lineTo(centerX + 50, centerY + radius + 110 + 40);
+                canvas.stroke();
+                break
+            default:
+                alert("Panic! This should never happen! game.getNumberOfBadGuesses() returned a number other than 1-6 inside Hangman.updateHangman()");
+        }
 
         //TODO clean up the look of the hangman. base the drawing on the size of the canvas
+    };
+
+    var clearCanvas = function () {
+        canvas.fillRect(0, 0, canvasSize, canvasSize);
     };
 
     var playCorrectSound = function(){
@@ -130,6 +148,11 @@ var Hangman = (function ($) {
     };
     
     var startNewGame = function () {
+        canvas.closePath();
+        clearCanvas();
+        canvas.beginPath();
+
+
         game = new Game(getRandomWordString());
         
         //clear word-wrapper and add new letters
@@ -148,8 +171,6 @@ var Hangman = (function ($) {
         });
         
         $('.keyboard-key').removeClass('disabled');
-
-        redrawHangman();
     };
 
     var revealWord = function(){
