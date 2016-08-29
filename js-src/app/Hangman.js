@@ -17,7 +17,7 @@ var Hangman = (function ($) {
 
 
 
-    var canvasSize = 340;
+    var canvasSize = 300;
 
     var centerX = canvasSize / 2;
     var centerY = canvasSize / 6;
@@ -45,9 +45,12 @@ var Hangman = (function ($) {
 
             //check if game is won
             if(game.isWon()){
-                alert('You win!');
+                setTimeout(function(){
+                    alert('You win!');
+                    startNewGame();
+                }, 1200);
                 //TODO win animation or something
-                startNewGame();
+
             }
         }
         else{
@@ -62,9 +65,12 @@ var Hangman = (function ($) {
             //check if game is lost
             if(game.isLost()){
                 revealWord();
-                alert('You lose!');
+                setTimeout(function(){
+                    alert('You lose!');
+                    startNewGame()
+                }, 1200);
                 //TODO lose animation or something
-                startNewGame()
+
             }
         }
 
