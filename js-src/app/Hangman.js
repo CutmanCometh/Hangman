@@ -17,7 +17,7 @@ var Hangman = (function ($) {
 
 
 
-    var canvasSize = 300;
+    var canvasSize = 320;
 
     var centerX = canvasSize / 2;
     var centerY = canvasSize / 6;
@@ -119,7 +119,7 @@ var Hangman = (function ($) {
                 alert("Panic! This should never happen! game.getNumberOfBadGuesses() returned a number other than 1-6 inside Hangman.updateHangman()");
         }
 
-        //TODO clean up the look of the hangman. base the drawing on the size of the canvas
+        //TODO clean up the look of the hangman
     };
 
     var clearCanvas = function () {

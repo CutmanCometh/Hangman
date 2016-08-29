@@ -4,7 +4,9 @@
  */
 
 (function(){
-    
+
+    //TODO resize canvas for best fit vertically and horizontally. also, does it work to fill the whole width of the phone?
+
     //attach listeners
     $('.keyboard-key').click(Hangman.keyTapped);
     Hangman.startNewGame();
