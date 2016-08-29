@@ -17,7 +17,7 @@ var Hangman = (function ($) {
 
 
 
-    var canvasSize = 300;
+    var canvasSize = 340;
 
     var centerX = canvasSize / 2;
     var centerY = canvasSize / 6;
@@ -82,31 +82,31 @@ var Hangman = (function ($) {
                 //draw body
                 canvas.lineWidth = 3;
                 canvas.moveTo(centerX, centerY + radius);
-                canvas.lineTo(centerX, centerY + radius + 110);
+                canvas.lineTo(centerX, centerY + radius + (canvasSize * (11/30)));
                 canvas.stroke();
                 break;
             case 3:
                 //draw right arm (stage right)
-                canvas.moveTo(centerX, centerY + radius + 10);
-                canvas.lineTo(centerX - 50, centerY + radius + 10 + 40);
+                canvas.moveTo(centerX, centerY + radius + (canvasSize / 30));
+                canvas.lineTo(centerX - (canvasSize / 6), centerY + radius + (canvasSize / 6));
                 canvas.stroke();
                 break;
             case 4:
                 //draw left arm (stage left)
-                canvas.moveTo(centerX, centerY + radius + 10);
-                canvas.lineTo(centerX + 50, centerY + radius + 10 + 40);
+                canvas.moveTo(centerX, centerY + radius + (canvasSize / 30));
+                canvas.lineTo(centerX + (canvasSize / 6), centerY + radius + (canvasSize / 6));
                 canvas.stroke();
                 break;
             case 5:
                 //draw right leg (stage right)
-                canvas.moveTo(centerX, centerY + radius + 110);
-                canvas.lineTo(centerX - 50, centerY + radius + 110 + 40);
+                canvas.moveTo(centerX, centerY + radius + (canvasSize * (11/30)));
+                canvas.lineTo(centerX - (canvasSize / 6), centerY + radius + (canvasSize / 2));
                 canvas.stroke();
                 break;
             case 6:
                 //draw left leg (stage left)
-                canvas.moveTo(centerX, centerY + radius + 110);
-                canvas.lineTo(centerX + 50, centerY + radius + 110 + 40);
+                canvas.moveTo(centerX, centerY + radius + (canvasSize * (11/30)));
+                canvas.lineTo(centerX + (canvasSize / 6), centerY + radius + (canvasSize / 2));
                 canvas.stroke();
                 break
             default:
