@@ -11,7 +11,7 @@ var Hangman = (function ($) {
     var vibrateIsAThing = !!navigator.vibrate;
 
     var game = null;
-    var canvasElement = $("#canvas")[0];
+    var canvasElement = $("#canvas")[0] || {getContext : function(){return {closePath : function(){}, fillRect : function(){}, beginPath : function(){}}}};//need mock object or karma freaks out
 
     var canvas = canvasElement.getContext('2d');
     canvas.strokeStyle = 'black';
