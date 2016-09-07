@@ -2,3 +2,5 @@
 node_modules/
 app-min.js
 app-min.js.map
+sass/.sass-cache
+css
