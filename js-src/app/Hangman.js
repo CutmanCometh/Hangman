@@ -7,7 +7,9 @@
  * @constructor
  */
 var Hangman = (function ($) {
-    
+
+    var vibrateIsAThing = !!navigator.vibrate;
+
     var game = null;
     var canvasElement = $("#canvas")[0];
 
@@ -142,11 +144,11 @@ var Hangman = (function ($) {
         //navigator.vibrate([30, 40, 30, 40, 30, 40, 30, 40, 30]);
         //navigator.vibrate([10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]);
         //navigator.vibrate([5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5]);
-        navigator.vibrate(75);
+        if(vibrateIsAThing)navigator.vibrate(75);
     };
 
     var incorrectVibrate = function(){
-        navigator.vibrate(700);
+        if(vibrateIsAThing)navigator.vibrate(700);
     };
 
     var getRandomWordString = function(){
