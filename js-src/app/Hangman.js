@@ -12,14 +12,12 @@ var Hangman = (function ($) {
 
     var game = null;
 
-    //TODO resize canvas for best fit vertically and horizontally. also, does it work to fill the whole width of the phone?
+    //resize canvas for best fit vertically and horizontally
     var canvasElement = $("#canvas")[0] || {getContext : function(){return {closePath : function(){}, fillRect : function(){}, beginPath : function(){}}}};//need mock object or karma freaks out
     var screenWidth = window.innerWidth;
     var screenHeight = window.innerHeight;
     var keyboardHeight = $('#keyboard').outerHeight();
     var wordHeight = $('#word-container').outerHeight();
-    console.log("keyboard height: ", keyboardHeight);
-    console.log("word height", wordHeight);
     var availableHeight = screenHeight - (keyboardHeight + wordHeight + 60);
     var canvasSize = (availableHeight < screenWidth ? availableHeight : screenWidth) - 20;
     canvasElement.width = canvasSize;
@@ -50,7 +48,6 @@ var Hangman = (function ($) {
         var isGuessCorrect = game.guessLetter(letter);
 
         if(isGuessCorrect){
-            //alert('correct');
             correctVibrate();
             playCorrectSound();
 
@@ -64,17 +61,15 @@ var Hangman = (function ($) {
                     startNewGame();
                 }, 1200);
                 //TODO win animation or something
-
+                //TODO win vibration
             }
         }
         else{
-            //alert('incorrect');
             incorrectVibrate();
             playIncorrectSound();
 
             //draw next part of the hangman
             updateHangman();
-            //alert('Incorrect. You have ' + game.getNumberOfGuessesRemaining() + " guesses remaining");
 
             //check if game is lost
             if(game.isLost()){
@@ -84,13 +79,14 @@ var Hangman = (function ($) {
                     startNewGame()
                 }, 1200);
                 //TODO lose animation or something
-
+                //TODO lose vribration
             }
         }
 
     };
 
     var updateHangman = function(){
+        //TODO draw each piece in segments, so it look hand-drawn
         switch (game.getNumberOfBadGuesses()){
             case 1:
                 //draw head
