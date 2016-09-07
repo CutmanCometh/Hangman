@@ -8,6 +8,14 @@
  */
 var Hangman = (function ($) {
 
+    //TODO keep track of wins and losses
+    //TODO persist data across browser reloads
+
+    var headDrawTime = 200;
+    var bodyDrawTime = 120;
+    var armDrawTime = 65;
+    var legDrawTime = 65;
+
     var vibrateIsAThing = !!navigator.vibrate;
 
     var game = null;
@@ -85,46 +93,124 @@ var Hangman = (function ($) {
 
     };
 
+    var drawHead = function(lastDrawTime, drawnPercentage){
+        var thisDrawTime = Date.now();
+        var elapsedTime = thisDrawTime - lastDrawTime;
+        var percentageToDraw = elapsedTime / headDrawTime;
+        var endDrawPercent = drawnPercentage + percentageToDraw;
+        var twoPi = 2 * Math.PI;
+        canvas.arc(centerX, centerY, radius, twoPi * (drawnPercentage + .25), twoPi * (endDrawPercent + .25), false);
+        canvas.stroke();
+
+        if(endDrawPercent <= 1){
+            window.requestAnimationFrame(function(){drawHead(thisDrawTime, endDrawPercent);});
+        }
+    };
+
+    var drawBody = function(lastDrawTime, drawnPercentage){
+        var thisDrawTime = Date.now();
+        var elapsedTime = thisDrawTime - lastDrawTime;
+        var percentageToDraw = elapsedTime / bodyDrawTime;
+        var endDrawPercent = drawnPercentage + percentageToDraw;
+
+        canvas.moveTo(centerX, centerY + radius + ((canvasSize * (11/30)) * drawnPercentage));//starting at the center of the head, move down by the radius of the head
+        canvas.lineTo(centerX, centerY + radius + ((canvasSize * (11/30)) * endDrawPercent));
+        canvas.stroke();
+
+        if(endDrawPercent <= 1){
+            window.requestAnimationFrame(function(){drawBody(thisDrawTime, endDrawPercent);});
+        }
+    };
+
+    var drawRightArm = function(lastDrawTime, drawnPercentage){
+        var thisDrawTime = Date.now();
+        var elapsedTime = thisDrawTime - lastDrawTime;
+        var percentageToDraw = elapsedTime / armDrawTime;
+        var endDrawPercent = drawnPercentage + percentageToDraw;
+
+        canvas.moveTo(centerX - ((canvasSize / 6) * drawnPercentage), centerY + radius + ((canvasSize / 6) * drawnPercentage));
+        canvas.lineTo(centerX - ((canvasSize / 6) * endDrawPercent), centerY + radius + ((canvasSize / 6) * endDrawPercent));
+        canvas.stroke();
+
+        if(endDrawPercent <= 1){
+            window.requestAnimationFrame(function(){drawRightArm(thisDrawTime, endDrawPercent);});
+        }
+    };
+
+    var drawLeftArm = function(lastDrawTime, drawnPercentage){
+        var thisDrawTime = Date.now();
+        var elapsedTime = thisDrawTime - lastDrawTime;
+        var percentageToDraw = elapsedTime / armDrawTime;
+        var endDrawPercent = drawnPercentage + percentageToDraw;
+
+        canvas.moveTo(centerX + ((canvasSize / 6) * drawnPercentage), centerY + radius + ((canvasSize / 6) * drawnPercentage));
+        canvas.lineTo(centerX + ((canvasSize / 6) * endDrawPercent), centerY + radius + ((canvasSize / 6) * endDrawPercent));
+        canvas.stroke();
+
+        if(endDrawPercent <= 1){
+            window.requestAnimationFrame(function(){drawLeftArm(thisDrawTime, endDrawPercent);});
+        }
+    };
+
+    var drawRightLeg = function(lastDrawTime, drawnPercentage){
+        var thisDrawTime = Date.now();
+        var elapsedTime = thisDrawTime - lastDrawTime;
+        var percentageToDraw = elapsedTime / legDrawTime;
+        var endDrawPercent = drawnPercentage + percentageToDraw;
+
+        canvas.moveTo(centerX - ((canvasSize / 6) * drawnPercentage), centerY + radius + (canvasSize * (12/30)) + ((canvasSize / 6) * drawnPercentage));
+        canvas.lineTo(centerX - ((canvasSize / 6) * endDrawPercent), centerY + radius + (canvasSize * (12/30)) + ((canvasSize / 6) * endDrawPercent));
+        canvas.stroke();
+
+        if(endDrawPercent <= 1){
+            window.requestAnimationFrame(function(){drawRightLeg(thisDrawTime, endDrawPercent);});
+        }
+    };
+
+    var drawLeftLeg = function(lastDrawTime, drawnPercentage){
+        var thisDrawTime = Date.now();
+        var elapsedTime = thisDrawTime - lastDrawTime;
+        var percentageToDraw = elapsedTime / legDrawTime;
+        var endDrawPercent = drawnPercentage + percentageToDraw;
+
+        canvas.moveTo(centerX + ((canvasSize / 6) * drawnPercentage), centerY + radius + (canvasSize * (12/30)) + ((canvasSize / 6) * drawnPercentage));
+        canvas.lineTo(centerX + ((canvasSize / 6) * endDrawPercent), centerY + radius + (canvasSize * (12/30)) + ((canvasSize / 6) * endDrawPercent));
+        canvas.stroke();
+
+        if(endDrawPercent <= 1){
+            window.requestAnimationFrame(function(){drawLeftLeg(thisDrawTime, endDrawPercent);});
+        }
+    };
+
     var updateHangman = function(){
         //TODO draw each piece in segments, so it look hand-drawn
         switch (game.getNumberOfBadGuesses()){
             case 1:
                 //draw head
                 canvas.lineWidth = 2;
-                canvas.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-                canvas.stroke();
+                window.requestAnimationFrame(function(){drawHead(Date.now(), 0);});
                 break;
             case 2:
                 //draw body
                 canvas.lineWidth = 3;
-                canvas.moveTo(centerX, centerY + radius);
-                canvas.lineTo(centerX, centerY + radius + (canvasSize * (11/30)));
-                canvas.stroke();
+                window.requestAnimationFrame(function(){drawBody(Date.now(), 0);});
                 break;
             case 3:
                 //draw right arm (stage right)
-                canvas.moveTo(centerX, centerY + radius + (canvasSize / 30));
-                canvas.lineTo(centerX - (canvasSize / 6), centerY + radius + (canvasSize / 6));
-                canvas.stroke();
+                window.requestAnimationFrame(function(){drawRightArm(Date.now(), 0);});
                 break;
             case 4:
                 //draw left arm (stage left)
-                canvas.moveTo(centerX, centerY + radius + (canvasSize / 30));
-                canvas.lineTo(centerX + (canvasSize / 6), centerY + radius + (canvasSize / 6));
-                canvas.stroke();
+                window.requestAnimationFrame(function(){drawLeftArm(Date.now(), 0);});
                 break;
             case 5:
                 //draw right leg (stage right)
-                canvas.moveTo(centerX, centerY + radius + (canvasSize * (11/30)));
-                canvas.lineTo(centerX - (canvasSize / 6), centerY + radius + (canvasSize / 2));
-                canvas.stroke();
+                window.requestAnimationFrame(function(){drawRightLeg(Date.now(), 0);});
                 break;
             case 6:
                 //draw left leg (stage left)
-                canvas.moveTo(centerX, centerY + radius + (canvasSize * (11/30)));
-                canvas.lineTo(centerX + (canvasSize / 6), centerY + radius + (canvasSize / 2));
-                canvas.stroke();
-                break
+                window.requestAnimationFrame(function(){drawLeftLeg(Date.now(), 0);});
+                break;
             default:
                 alert("Panic! This should never happen! game.getNumberOfBadGuesses() returned a number other than 1-6 inside Hangman.updateHangman()");
         }
